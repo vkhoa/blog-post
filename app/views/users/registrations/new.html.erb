@@ -1,0 +1,39 @@
+<div class="devise-form mt-5 col-md-6 col-xl-4 col-12 p-3 m-auto">
+  <h2 class="text-muted text-center"> Sign up </h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+
+    <div class="field mt-3">
+      <%= f.label :email, class: "text-black-50 small" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control rounded-pill"%>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :password, class: "small text-black-50" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control rounded-pill" %>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :password_confirmation, class: "small text-black-50" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control rounded-pill" %>
+    </div>
+
+    <div class="mt-3 text-black-50 small">
+      <%= f.collection_radio_buttons :role, User::ROLES, :to_s, :capitalize %>
+    </div>
+
+    <div class="row actions mt-3">
+      <div class="col-md-8 col-8">
+        <span class="text-black-50 small"> Have an account </span>
+        <%= link_to "Log in", new_session_path(resource_name) %><br />
+      </div>
+      <div class="col-md-4 col-4 text-center">
+        <%= f.submit "Sign up", class: 'btn btn-md w-100 btn-success rounded-pill' %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

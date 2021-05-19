@@ -1,0 +1,38 @@
+<div class="post">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-12 p-5">
+      <div class="row justify-content-end">
+        <div class="col-md-3">
+          <%= link_to 'Back', posts_path, class: 'btn btn-md rounded-pill btn-success w-100' %>
+        </div>
+      </div>
+      <div class="text-30px text-muted">Create post </div>
+      <%= form_for :post, url: posts_path do |f| %>
+        <% if @post.errors&.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+              <li class="text-danger"><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <p>
+          <%= f.label :title, class: "text-muted" %><br>
+          <%= f.text_field :title, class: "form-control" %>
+        </p>
+      
+        <p>
+          <%= f.label :text, class: "text-muted" %><br>
+          <%= f.text_area :text, class: "form-control" %>
+        </p>
+    
+        <p>
+          <%= f.submit 'Create', class: "btn btn-md btn-success" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+<div>

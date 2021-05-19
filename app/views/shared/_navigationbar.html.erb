@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <div class="container p-15p">
+    <a class="navbar-brand" href="#">
+      <img src="<%= image_path('logo.png') %>" width="50px" height="50px" class="rounded-circle">
+    </a>
+    <p class="navbar-text text-black-50">
+      <% if user_signed_in? %>
+        <img src="<%= image_path('icon.png') %>" width="30px" height="30px">
+        <span> <%= current_user.email.split('@')[0] %> </span>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+    </p>
+  </div>
+</nav>

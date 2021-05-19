@@ -1,0 +1,52 @@
+<div class="post">
+  <% if notice || alert %>
+    <div class="mt-5 px-5">
+      <div class="text-white bg-warning text-center">
+        <p class="notice"><%= notice %></p>
+        <p class="alert text-danger"><%= alert %></p>
+      </div>
+    </div>
+  <% end %>
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-12 p-5">
+      <div class="row justify-content-end">
+        <div class="col-md-3">
+          <%= link_to 'New post', new_post_path, class: 'btn btn-md rounded-pill btn-success w-100' %>
+        </div>
+      </div>
+      <h1>Post list</h1>
+      <table class="table">
+        <tr>
+          <th>Title</th>
+          <th>Text</th>
+          
+          <% if can? :read, @posts[0] %>
+            <th></th>
+          <% end %>
+          <% if can? :edit, @posts[0] %>
+            <th></th>  
+          <% end %>
+          <% if can? :edit, @posts[0] %>
+            <th></th>
+          <% end %>
+        </tr>
+      
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td><%= post.text %></td>
+            <% if can? :read, post %>
+              <td><%= link_to 'Show', post_path(post) %></td>
+            <% end %>
+            <% if can? :edit, post %>
+              <td><%= link_to 'Edit', edit_post_path(post) %></td>
+              <% end %>
+            <% if can? :destroy, post %>
+              <td><%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+<div>
